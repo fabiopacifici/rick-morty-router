@@ -1,27 +1,6 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-
-
-export default function CharactersPage() {
-  const [characters, setCharacters] = useState([])
-
-
-  function fetchData() {
-
-    axios.get(`https://rickandmortyapi.com/api/character`)
-      .then(response => {
-        console.log(response);
-        setCharacters(response.data.results)
-      }).catch(err => {
-        console.log(err);
-      })
-  }
-
-
-
-  useEffect(fetchData, [])
-
+import CharactersList from '../components/CharactersList';
+export default function CharactersPage({characters}) {
+   
 
 
   return (
@@ -41,24 +20,7 @@ export default function CharactersPage() {
      </div>
      
 
-      <section className='mb-3'>
-        <div className="container">
-          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-            {characters.map(character => (
-              <div className="col">
-                <div className="card h-100">
-                  <img className="card-img-top" src={character.image} />
-                  <div className="card-body">
-                    <h3 className="card-title">{character.name}</h3>
-                    <Link className='btn btn-dark' to={`/characters/${character.id}`}>View Character</Link>
-                  </div>
-                </div>
-              </div>
-
-            ))}
-          </div>
-        </div>
-      </section>
+     <CharactersList characters={characters} />
 
     </>
 
