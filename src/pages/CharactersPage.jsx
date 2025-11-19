@@ -1,5 +1,5 @@
 import CharactersList from '../components/CharactersList';
-export default function CharactersPage({characters}) {
+export default function CharactersPage() {
    
 
 
@@ -20,7 +20,7 @@ export default function CharactersPage({characters}) {
      </div>
      
 
-     <CharactersList characters={characters} />
+     <CharactersList />
 
     </>
 

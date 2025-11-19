@@ -1,8 +1,13 @@
+import { useGlobalProvider } from "../contexts/GlobalContext";
 import CharacterCard from "./CharacterCard";
 
-export default function CharactersList({characters}){
+export default function CharactersList(){
 
 
+/*   const {fabio} = useGlobalProvider()
+  console.log(fabio); */
+  const {characters} = useGlobalProvider()
+  
   return (
     <>
       <section className='mb-3'>
