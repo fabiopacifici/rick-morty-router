@@ -1,16 +1,39 @@
-# React + Vite
+## Variabili d’ambiente
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In un progetto React JS creato con **Vite**, le variabili di ambiente si gestiscono tramite i file `.env` e seguono una convenzione precisa.
 
-Currently, two official plugins are available:
+### 1) Creare un file `.env` nella root del progetto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ci sono diversi ambienti e che quindi è possibile avere diversi nomi per questi file:
 
-## React Compiler
+- `.env` – variabili valide in tutti gli ambienti
+- `.env.development` – solo in sviluppo
+- `.env.production` – solo in produzione
+- `.env.locale` - solo in locale
+- `.env.example` - serve da pseudo documentazione e di solito serve per mostrare le diverse chiavi ma si pusha con valori standar o addirittura senza valori (pushare questo per l’esercizio e tenere il `.env` solo sul proprio pc (mettendolo nel .gitignore).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2) Definire delle variabili
 
-## Expanding the ESLint configuration
+All’interno di questi file, definiamo le variabili. In un progetto creato con Vite, tutte le variabili **devono iniziare con** `VITE_` :
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```jsx
+VITE_API_URL=https://api.example.com
+VITE_GOOGLE_MAPS_KEY=abcdef123456
+```
+
+### 3) Richiamare le variabili nel codice
+
+In un progetto creato con Vite, tutte le variabili d’ambiente sono accessibili tramite `import.meta.env` :
+
+```jsx
+const apiUrl = import.meta.env.VITE_API_URL;
+//...
+
+axios.get(`${apiUrl}/movies`).then(() =>{
+ //...
+})
+```
+
+💡
+
+> Le variabili definite da noi nei file `.env` devono essere prefissate con `VITE_` per essere accessibili nel codice,

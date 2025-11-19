@@ -10,9 +10,11 @@ function GlobalProvider({ children }) {
   const [fabio, setFabio] = useState('This is fab')
   const [characters, setCharacters] = useState([])
 
+  // Read the .env file
+  const api_key = import.meta.env.VITE_MOVIE_DB_API_KEY
   function fetchData() {
 
-    axios.get(`https://rickandmortyapi.com/api/character`)
+    axios.get(`https://rickandmortyapi.com/api/character?api_key=${api_key}`)
       .then(response => {
         console.log(response);
         setCharacters(response.data.results)
